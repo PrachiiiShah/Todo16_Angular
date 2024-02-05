@@ -1,0 +1,110 @@
+<div class="container">
+    <br />
+    <h1>To-Do List</h1>
+
+    <form class="form" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="col-md-6">
+            <label for="inputName">User Name</label>
+            <input type="text" class="form-control" id="inputName" formControlName="inputName" required /><span class="text-danger" *ngIf="(taskFormControl.inputName.invalid && (taskFormControl.inputName.dirty || taskFormControl.inputName.touched) && taskFormControl.inputName.errors?.['required'])">
+        Name is required
+      </span>
+        </div>
+        <div class="col-md-6">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" formControlName="inputEmail" required />
+            <span class="text-danger" *ngIf="(taskFormControl.inputEmail.invalid && (taskFormControl.inputEmail.dirty || taskFormControl.inputEmail.touched) && taskFormControl.inputEmail.errors?.['required'])">
+        Email is required
+      </span>
+        </div>
+        <div class="col-md-6">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" formControlName="inputPassword" required />
+            <span class="text-danger" *ngIf="(taskFormControl.inputPassword.invalid && (taskFormControl.inputPassword.dirty || taskFormControl.inputPassword.touched) && taskFormControl.inputPassword.errors?.['required'])">
+        Password is required
+      </span>
+
+            <div *ngIf="taskForm.get('inputPassword')!.hasError('pattern')">
+                Password must contain at least one number, and be at least 8 characters long.
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Enter Address" formControlName="inputAddress" required />
+            <span class="text-danger" *ngIf="(taskFormControl.inputAddress.invalid && (taskFormControl.inputAddress.dirty || taskFormControl.inputAddress.touched) && taskFormControl.inputAddress.errors?.['required'])">
+        Address is required
+      </span>
+        </div>
+        <div class="col-md-6">
+            <label for="inputCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="inputCity" formControlName="inputCity" required />
+            <span class="text-danger" *ngIf="(taskFormControl.inputCity.invalid && (taskFormControl.inputCity.dirty || taskFormControl.inputCity.touched) && taskFormControl.inputCity.errors?.['required'])">
+        City is required
+      </span>
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label">State</label>
+            <select id="inputState" class="form-select" formControlName="inputState" required>
+        <option selected>Maharastra</option>
+        <option>Gujarat</option>
+        <option>Rajasthan</option>
+        <option>Nepal</option>
+        <option>Delhi</option>
+      </select>
+            <span class="text-danger" *ngIf="(taskFormControl.inputState.invalid && (taskFormControl.inputState.dirty || taskFormControl.inputState.touched) && taskFormControl.inputState.errors?.['required'])">
+        State is required
+      </span>
+        </div>
+        <div class="col-md-2">
+            <label for="inputZip" class="form-label">Zip</label>
+            <input type="number" class="form-control" id="inputZip" formControlName="inputZip" required />
+            <span class="text-danger" *ngIf="(taskFormControl.inputZip.invalid && (taskFormControl.inputZip.dirty || taskFormControl.inputZip.touched) && taskFormControl.inputZip.errors?.['required'])">
+        State is required
+      </span>
+        </div>
+        <br />
+
+        <br />
+        <label>Gender</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" formControlName="inputGender" value="male" checked />Male
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" formControlName="inputGender" value="female" />Female
+        </div>
+        <span class="text-danger" *ngIf="(taskFormControl.inputGender.invalid && (taskFormControl.inputGender.dirty || taskFormControl.inputGender.touched) && taskFormControl.inputGender.errors?.['required'])">
+      Gender is required
+    </span>
+
+        <br />
+        <div class="col-md-2">
+            <label for="inputDate" class="form-label">Task DueDate</label>
+            <input type="date" class="form-control" id="inputDate" formControlName="inputDate" required />
+            <span class="text-danger" *ngIf="(taskFormControl.inputDate.invalid && (taskFormControl.inputDate.dirty || taskFormControl.inputDate.touched) && taskFormControl.inputDate.errors?.['required'])">
+        Date is required
+      </span>
+        </div>
+
+        <div class="form-group">
+            <label for="task">Task</label>
+            <input type="text" class="form-control" id="task" placeholder="Enter Task" formControlName="task" required />
+            <span class="text-danger" *ngIf="(taskFormControl.task.invalid && (taskFormControl.task.dirty || taskFormControl.task.touched) && taskFormControl.task.errors?.['required'])">
+        Task is required
+      </span>
+        </div>
+
+        <br />
+        <div class="col-12">
+            <label for="inputDescription" class="form-label">Task Description</label>
+            <input type="text" class="form-control" id="inputDescription" placeholder="Task Description" formControlName="inputDescription" required />
+            <span class="text-danger" *ngIf="(taskFormControl.inputDescription.invalid && (taskFormControl.inputDescription.dirty || taskFormControl.inputDescription.touched) && taskFormControl.inputDescription.errors?.['required'])">
+        Task Description is required
+      </span>
+        </div>
+
+        <button id="submitButton" type="submit" class="btn btn-primary">
+      Submit
+    </button>
+        <!-- (click)="onSubmit()" -->
+        <hr />
+    </form>
+</div>

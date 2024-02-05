@@ -1,0 +1,9 @@
+<!-- Responsibilty  of this component is to display the list of tasks and as well as manage it. -->
+<div class="colum">
+    <div *ngFor="let t of task; index as i" class="col-md-8">
+
+        <app-todo-card [task]="t" (taskDeleted)="onDelete($event)"></app-todo-card>
+    </div>
+
+    <!-- (taskDeleted)="removeTask(i)" -->
+</div>

@@ -1,0 +1,25 @@
+<!-- Responsibilty of this car caomponent is to display properties of task in a card. -->
+<div class="card">
+    <div class="card-body">
+        <ul class="nav nav-pills card-header-pills">
+            <h5 class="card-title">Task No. {{ task.number }} </h5>
+
+
+
+        </ul>
+        <h5 class="card-title">{{ task.taskName }}</h5>
+
+        <p class="card-text">{{ task.taskDescription }}</p>
+        <div class="col-md-12 text-end">
+            <h6 class="card-duedate">DueDate: {{ task.userDate }}</h6>
+        </div>
+        <div class="col-md-1.5 text-strat">
+            <button class="btn btn-danger btn-sm" (click)="onDelete()">Delete Task</button>
+        </div>
+
+
+
+
+
+    </div>
+</div>
