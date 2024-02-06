@@ -2,13 +2,14 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { Validators, FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Todo } from '../model';
-
+import { TodoServiceService } from '../services/todo-service.service';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent {
+  // taskCounter: number = 1;
   taskForm = new FormGroup({
     inputName: new FormControl('', Validators.required),
     inputEmail: new FormControl('', [Validators.required, Validators.email]),
@@ -20,22 +21,27 @@ export class TodoComponent {
     inputCity: new FormControl('', Validators.required),
     inputState: new FormControl('', Validators.required),
     inputZip: new FormControl('', Validators.required),
-
+    
     inputGender: new FormControl('', Validators.required),
 
     inputDate: new FormControl('', Validators.required),
     task: new FormControl('', Validators.required),
     inputDescription: new FormControl('', Validators.required),
   });
-  @Output() taskArrayChange = new EventEmitter<Todo>();
+  constructor(private todoService:TodoServiceService){}
+  
+  // public btnClick(): void{
+  //   this._todoService.myData = 'Hello from Service';
+  // }
+  //@Output() taskArrayChange = new EventEmitter<Todo>();
 
-  taskArray: Todo[] = [];
+  //taskArray: Todo[] = [];
   //Todo: Todo[] = [];
 
   get taskFormControl() {
     return this.taskForm.controls;
   }
-  taskCounter: number = 1;
+
 
   getFormValidationErrors(form: FormGroup) {
     const result: any[] = [];
@@ -61,11 +67,12 @@ export class TodoComponent {
   // }
 
   onSubmit() {
+    
     console.log(this.taskForm.value);
     console.log(this.getFormValidationErrors(this.taskForm));
     if (this.taskForm.valid) {
       const formValue = this.taskForm.value;
-
+   
       const newTask = {
         userName: formValue.inputName!,
         userEmail: formValue.inputEmail!,
@@ -78,25 +85,27 @@ export class TodoComponent {
         userGender: formValue.inputGender!,
         userDate: new Date(formValue.inputDate!),
         taskName: formValue.task!,
-        number: this.taskCounter++,
+        number:1,
+        // number: this.taskCounter++,
         taskDescription: formValue.inputDescription!,
         isCompleted: false,
       };
       console.log('New Task:', newTask);
 
-      this.taskArray.push(newTask);
-      console.log('Task Array in TodoComponent:', this.taskArray);
-      this.taskArrayChange.emit(newTask);
+      //this.taskArray.push(newTask);
+      this.todoService.addTask(newTask);
+      //console.log('Task Array in TodoComponent:', this.taskArray);
+      //this.taskArrayChange.emit(newTask);
       console.log('New task: ', newTask);
       // this.taskArrayChange.emit(this.taskArray);
-      console.log('Task Array Change Event Emitted');
+      //console.log('Task Array Change Event Emitted');
       // this.taskForm.reset();
     } else {
       this.taskForm.markAsDirty();
       this.taskForm.markAllAsTouched(); 
       console.log(this.taskForm.errors);
     }
-    console.log('Task Array:', this.taskArray);
+   // console.log('Task Array:', this.taskArray);
 
     console.error();
   }

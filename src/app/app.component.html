@@ -6,28 +6,36 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" (click)="showTodoForm()">Add Todo Task</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            (click)="showTodoCard()"
-            >Show Card</a
-          >
-        </li>
-      </ul>
+                    <a class="nav-link active" routerLink="/add">Add Todo Task</a>
+                    <!-- <a class="nav-link active" aria-current="page" (click)="showTodoForm()">Add Todo Task</a> -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="/card">Show Todo Cards</a>
+                    <!-- <a class="nav-link active" aria-current="page" (click)="showTodoCard()">Show Card</a -->
+
+                </li>
+
+
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
 
-<div *ngIf="currentComponent === 'todo'">
-  <app-todo (taskArrayChange)="onSubmit($event)"></app-todo>
+<!-- <div *ngIf="currentComponent === 'todo'">
+
+     <app-todo></app-todo> 
 </div>
 <div>
-  <div *ngIf="currentComponent === 'card'">
-    <app-todolist [task]="tasks"></app-todolist>
-  </div>
-</div>
+    <div *ngIf="currentComponent === 'card'">
+        <app-todolist></app-todolist> 
+    </div>
+</div> -->
+
+<!-- <div>
+  <h1>Welcome to the Todo App!</h1>
+  <a routerLink="/todo">New Component</a>
+                    <br>
+                    <a routerLink="/todolist">To do</a>
+        </div> -->
+<!-- <p>Data from child = {{_todoService.myData}}</p> -->
 <router-outlet></router-outlet>
